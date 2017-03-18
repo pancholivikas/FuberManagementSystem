@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	<!-- Context initialization -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.cat.fms" />
+
+	<!-- MVC view resolver config -->
+	<mvc:annotation-driven />	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="50000000"/>
+	</bean>
+<!--     <bean id="dataSource2" class="com.cat.cma.CustomTomcatDataSource"
+        destroy-method="close">
+        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+        <property name="url" value="jdbc:sqlserver://mobilesitesolutiondev.database.windows.net:1433;database=mobilesitesolutiondev" />
+        <property name="username" value="chinamobilepp" />
+        <property name="password" value="" />
+        <property name="validationQuery" value="select 1"  />  
+        <property name="testOnBorrow" value="true"  />
+    </bean>
+    <bean id="sessionFactory2"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2" />
+       	<property name="packagesToScan" value="com.cat.cma" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.default_schema">dbo</prop>
+                <prop key="hibernate.connection.useUnicode">true</prop>
+                <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+                <prop key="hibernate.connection.charSet">UTF-8</prop>
+                <prop key="hibernate.hbm2ddl.auto">create/update</prop>
+            </props>
+        </property>
+    </bean>  -->
+    
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"></bean>
+	<bean id="dashboardService" class="com.cat.fms.service.DashboardServiceImpl">
+	</bean>
+	
+	
+</beans>
