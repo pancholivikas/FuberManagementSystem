@@ -20,37 +20,48 @@ public class DashboardController {
 	
 	@RequestMapping(value = "/bookRide", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody
-	String getLeavesData(
-			@RequestParam("customerId") String customerId,
+	String bookRide(
+			@RequestParam("mobileNumber") String mobileNumber,
 			@RequestParam("lat") String lat,
-			@RequestParam("lng") String lng) throws JSONException {
+			@RequestParam("lng") String lng,
+			@RequestParam("carType") String carType) throws JSONException {
 		JSONObject obj = new JSONObject();
-		obj = dashboardService.bookRide(customerId, lat, lng);
+		obj = dashboardService.bookRide(mobileNumber, lat, lng, carType);
 		return obj.toString();
 	}
 	
-	@RequestMapping(value = "/getHistory", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/checkRide", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody
-	String getHistory(
-			@RequestParam("psId") String psId,
-			@RequestParam("cwsId") String cwsId) throws JSONException {
+	String checkRide(
+			@RequestParam("mobileNumber") String mobileNumber,
+			@RequestParam("lat") String lat,
+			@RequestParam("lng") String lng,
+			@RequestParam("carType") String carType) throws JSONException {
 		JSONObject obj = new JSONObject();
-		obj = dashboardService.getHistory(psId, cwsId);
+		obj = dashboardService.checkRide(mobileNumber, lat, lng, carType);
 		return obj.toString();
 	}
 	
-	@RequestMapping(value = "/setLeavesData", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/cancelRide", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody
-	String setLeavesData(
-			@RequestParam("psId") String psId,
-			@RequestParam("cwsId") String cwsId,
-			@RequestParam("leaveType") String leaveType,
-			@RequestParam("startDate") String startDate,
-			@RequestParam("endDate") String endDate,
-			@RequestParam("noOfDays") String noOfDays) throws JSONException {
+	String cancelRide(
+			@RequestParam("driver_mobNo") String driver_mobno) throws JSONException {
 		JSONObject obj = new JSONObject();
-		obj = dashboardService.setLeavesData(psId, cwsId, leaveType, startDate, endDate, noOfDays);
+		obj = dashboardService.cancelRide(driver_mobno);
 		return obj.toString();
 	}
-
+	
+	@RequestMapping(value = "/completeRide", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public @ResponseBody
+	String completeRide(
+			@RequestParam("rideId") String rideId,
+			@RequestParam("driver_mobNo") String driver_mobno,
+			@RequestParam("destinationLat") String d_lat,
+			@RequestParam("destinationLng") String d_lng,
+			@RequestParam("carType") String carType) throws JSONException {
+		JSONObject obj = new JSONObject();
+		obj = dashboardService.completeRide(rideId, driver_mobno, d_lat, d_lng, carType);
+		return obj.toString();
+	}
+	
 }

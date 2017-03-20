@@ -5,14 +5,11 @@ import org.codehaus.jettison.json.JSONObject;
 
 public interface DashboardService {
 
-	JSONObject getLeavesData(String psId, String cwsId) throws JSONException;
+	JSONObject bookRide(String mobileNumber, String lat, String lng, String carType) throws JSONException;
 
-	JSONObject setLeavesData(String psId, String cwsId, String leaveType,
-			String startDate, String endDate, String noOfDays) throws JSONException;
+	JSONObject checkRide(String mobileNumber, String lat, String lng, String carType) throws JSONException;
 
-	JSONObject getHistory(String psId, String cwsId) throws JSONException;
+	JSONObject cancelRide(String driver_mobno) throws JSONException;
 
-	JSONObject bookRide(String customerId, String lat, String lng) throws JSONException;
-	
-
+	JSONObject completeRide(String rideId, String driver_mobno, String d_lat, String d_lng, String carType) throws JSONException;
 }
