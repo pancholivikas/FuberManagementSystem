@@ -123,8 +123,12 @@ public class DashboardServiceImpl implements DashboardService{
 					obj.put("carType", String.valueOf(row[4]));
 					jsonArr.put(obj);
 				}				
+				resultObj.put("data", jsonArr);
 			}
-			resultObj.put("data", jsonArr);
+			else {
+				resultObj.put("data", "Not Found");
+			}
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
